@@ -1,0 +1,121 @@
+server:
+  port: 8854
+
+spring:
+  application:
+    name: consumerService
+  cloud:
+    nacos:
+      discovery:
+        server-addr:
+    sentinel:
+      enabled: true
+      transport:
+        port: 8720
+        dashboard:
+        clientIp:
+    alibaba:
+      seata:
+        tx-service-group: default_tx_group
+
+
+
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+  datasource:
+    seata:
+      url: jdbc:mysql://?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&serverTimezone=CST
+      username:
+      password:
+      driver-class-name:
+      # Hikari 连接池
+      type:
+      hikari:
+        minimum-idle: 5
+        maximum-pool-size: 15
+        auto-commit: true
+        idle-timeout: 30000
+        pool-name:
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
+    kilink:
+      url: jdbc:mysql://?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+      username:
+      password:
+      driver-class-name:
+      # Hikari 连接池
+      type:
+      hikari:
+        minimum-idle: 5
+        maximum-pool-size: 15
+        auto-commit: true
+        idle-timeout: 30000
+        pool-name:
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
+
+  redis:
+
+    cluster:
+
+      max-redirects: 3
+
+      nodes:
+    timeout: 3000ms
+
+    lettuce:
+      pool:
+
+        max-active: 300
+
+        max-wait: 1000
+
+        max-idle: 100
+
+        min-idle: 50
+    database: 0
+
+dubbo:
+
+  protocol:
+    port:
+      -1
+    name: dubbo
+  registry:
+    address: spring-cloud://
+
+  cloud:
+    subscribed-services: providerService
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+
+seata:
+  tx-service-group: default_tx_group
+  service:
+    vgroupMapping:
+      default_tx_group: default
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr:
+      group : "SEATA_GROUP"
+      namespace: ""
+      username: "nacos"
+      password: "nacos"
+  config:
+    type: nacos
+    nacos:
+      server-addr:
+      group: "SEATA_GROUP"
+      namespace: ""
+      username: "nacos"
+      password: "nacos"
+  application-id: ${spring.application.name}
+

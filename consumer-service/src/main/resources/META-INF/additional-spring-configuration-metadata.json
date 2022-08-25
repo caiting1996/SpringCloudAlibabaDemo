@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "seata.service.vgroupMapping",
+      "type": "java.lang.String",
+      "description": "Description for seata.service.vgroupMapping."
+  }
+] }

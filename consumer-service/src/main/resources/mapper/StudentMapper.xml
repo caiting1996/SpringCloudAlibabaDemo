@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.consumerservice.mapper.StudentMapper">
+
+
+
+    <sql id="tableName">
+        student
+    </sql>
+
+    <insert id="add">
+        insert into <include refid="tableName"></include>(
+        student_no,
+        student_name,
+        subject_no,
+        subject_name,
+        score
+        )
+        values (
+        #{student.studentNo},
+        #{student.studentName},
+        #{student.subjectNo},
+        #{student.subjectName},
+        #{student.score}
+
+        )
+    </insert>
+
+
+</mapper>
